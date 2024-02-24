@@ -1,17 +1,26 @@
 export default class Airport {
-  constructor() {
-    this.planes = 0;
+  constructor(name, code) {
+    this.name = name;
+    this.code = code;
   }
 
-  get planes() {
-    return this._planes;
+  get name() {
+    return this._name;
   }
 
-  set planes(value) {
-    this._planes = value;
+  set name(value) {
+    this._name = value;
   }
 
-  static getAirportCode() {
-    return 'DEN';
+  get code() {
+    return this._code;
+  }
+
+  set code(value) {
+    this._code = value;
+  }
+
+  get [Symbol.toStringTag]() {
+    return this._code;
   }
 }
