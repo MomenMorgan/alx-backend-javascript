@@ -30,17 +30,20 @@ export default class HolbertonCours {
     if (typeof newName === 'string') {
       this._name = newName;
     }
+    return 'Error';
   }
 
   set length(newLength) {
     if (typeof newLength === 'number') {
       this._length = newLength;
     }
+    return 'Error';
   }
 
   set students(newStudents) {
     if (Array.isArray(newStudents)) {
       this._students = newStudents;
     }
+    return 'Error';
   }
 }
