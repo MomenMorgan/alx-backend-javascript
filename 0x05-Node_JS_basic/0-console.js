@@ -1,3 +1,5 @@
-export default displayMessage = (data) => {
-  console.log(data.toString());
-};
+function displayMessage(str) {
+  console.log(str);
+}
+
+module.exports = displayMessage;
