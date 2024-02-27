@@ -22,12 +22,14 @@ function countStudents(path) {
     console.log(
       `Number of students in CS: ${cs.length}. List: ${cs
         .map((el) => el[0])
-        .reverse()}`,
+        .reverse()
+        .join(', ')}`,
     );
     console.log(
       `Number of students in SWE: ${swe.length}. List: ${swe
         .map((el) => el[0])
-        .reverse()}`,
+        .reverse()
+        .join(', ')}`,
     );
   } catch (error) {
     throw new Error('Cannot load the database');
