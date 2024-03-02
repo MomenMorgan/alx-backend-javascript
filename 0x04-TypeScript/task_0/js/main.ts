@@ -37,7 +37,6 @@ function renderTable(students: Student[]) {
     row.appendChild(firstNameCell);
     row.appendChild(locationCell);
 
-    table.appendChild(row);
+    table?.appendChild(row);
   });
 }
-
