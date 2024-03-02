@@ -1,42 +1,64 @@
-export interface Student {
-  firstName: string;
-  lastName: string;
-  age: number;
-  location: string;
+export interface DirectorInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workDirectorTasks(): string;
 }
-//create tow students
 
-export const student1: Student = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 23,
-  location: "New York",
+export interface TeacherInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workTeacherTasks(): string;
+}
+
+export class Director implements DirectorInterface {
+  workFromHome() {
+    return "Working from home";
+  }
+
+  getCoffeeBreak() {
+    return "Getting a coffee break";
+  }
+
+  workDirectorTasks() {
+    return "Getting to director tasks";
+  }
+}
+
+export class Teacher implements TeacherInterface {
+  workFromHome() {
+    return "Cannot work from home";
+  }
+
+  getCoffeeBreak() {
+    return "Cannot have a break";
+  }
+
+  workTeacherTasks() {
+    return "Getting to work";
+  }
+}
+
+export const createEmployee = (salary: number | string) => {
+  if (typeof salary === "number" && salary < 500) return new Teacher();
+  return new Director();
 };
 
-export const student2: Student = {
-  firstName: "Jane",
-  lastName: "Snow",
-  age: 25,
-  location: "Cairo",
-};
+export function isDirector(
+  employee: DirectorInterface | TeacherInterface
+): employee is Director {
+  return (employee as Director).workDirectorTasks !== undefined;
+}
 
-const studentsList: Array<Student> = [student1, student2];
+export function executeWork(
+  employee: DirectorInterface | TeacherInterface
+): string {
+  if (isDirector(employee)) return employee.workDirectorTasks();
+  return employee.workTeacherTasks();
+}
 
-function renderTable(students: Student[]) {
-  const table = document.getElementById("students-table");
+export type Subjects = "Math" | "History";
 
-  studentsList.forEach((student) => {
-    const row = document.createElement("tr");
-
-    const firstNameCell = document.createElement("td");
-    firstNameCell.textContent = student.firstName;
-
-    const locationCell = document.createElement("td");
-    locationCell.textContent = student.location;
-
-    row.appendChild(firstNameCell);
-    row.appendChild(locationCell);
-
-    table?.appendChild(row);
-  });
+export function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") return "Teaching Math";
+  return "Teaching History";
 }
